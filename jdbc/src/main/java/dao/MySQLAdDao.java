@@ -33,18 +33,26 @@ public class MySQLAdDao implements Ads {
     }
 
     @Override
-    public void createAd(long user_id, String title, String description) {
+    public Long createAd(long user_id, String title, String description) {
+            long created = 0L;
         try {
+
             String query = String.format("insert into ads (user_id, title, description) VALUES" +
                             "(%d, '%s', '%s')",
                     user_id,title, description);
             System.out.println(query);
-            boolean success = statement.execute(query);
+            long success = statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = statement.getGeneratedKeys();
+            while (rs.next()){
+                created = rs.getLong(1);
+            }
+            System.out.println(created);
 
-            System.out.println(success);
+
         } catch(SQLException ex) {
             System.out.printf("ERROR: %s\n", ex);
         }
+        return  created;
     }
 
     @Override
@@ -133,9 +141,9 @@ public class MySQLAdDao implements Ads {
 //        for (Ad ad : updated) {
 //            System.out.println(ad);
 //        }
-//    MySQLAdDao mySQLAdDao = new MySQLAdDao();
-//        mySQLAdDao.createAd(1, "Need Starbuck", "Coffee First");
-        new MySQLAdDao().deleteById(2);
+    MySQLAdDao mySQLAdDao = new MySQLAdDao();
+        mySQLAdDao.createAd(1, "I dont want tuna for lunch", "thai instead");
+//        new MySQLAdDao().deleteById(2);
 
         ArrayList<Ad> all = new MySQLAdDao().getAll();
         for (Ad ad : all) {
