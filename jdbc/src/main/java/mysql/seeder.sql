@@ -29,7 +29,7 @@ create table if not exists ads (
         foreign key (user_id) references users(id)
                                on delete cascade
 );
-
+# truncate table users;
 insert into users(username, email, password) values
 ('amberlovescats', 'aj@mail.com', 'aj'),
 ('camilovescats', 'cj@mail.com', 'cj'),

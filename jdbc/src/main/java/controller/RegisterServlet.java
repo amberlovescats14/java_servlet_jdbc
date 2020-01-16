@@ -3,6 +3,7 @@ package controller;
 import dao.users.MySQLUserDao;
 import dao.users.Users;
 import models.User;
+import org.mindrot.jbcrypt.BCrypt;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,7 +35,8 @@ public class RegisterServlet extends HttpServlet {
             String email = req.getParameter("email");
             String password = req.getParameter("password");
 
-            User user = new User(username,email, password);
+            String hash = BCrypt.hashpw(password, BCrypt.gensalt());
+            User user = new User(username,email, hash);
 
             new MySQLUserDao().createUser(user);
 

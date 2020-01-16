@@ -37,6 +37,12 @@
       <artifactId>mysql-connector-java</artifactId>
       <version>8.0.18</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.mindrot/jbcrypt -->
+    <dependency>
+      <groupId>org.mindrot</groupId>
+      <artifactId>jbcrypt</artifactId>
+      <version>0.4</version>
+    </dependency>
 
 
     <dependency>
@@ -45,6 +51,8 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
+
+
   </dependencies>
 
   <build>
