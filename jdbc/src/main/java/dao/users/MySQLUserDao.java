@@ -97,23 +97,52 @@ public class MySQLUserDao implements Users {
 
     @Override
     public int updateUserById(User user) {
-        return 0;
+        int numberOfRowsEffected = 0;
+        try {
+            String query = "update users set username = ?, email = ?, password = ? where id = ?";
+
+            PreparedStatement stmt = connection.prepareStatement(query);
+
+            stmt.setString(1, user.getUsername());
+            stmt.setString(2, user.getEmail());
+            stmt.setString(3, user.getPassword());
+            stmt.setString(4, Long.toString(user.getId()));
+
+            numberOfRowsEffected = stmt.executeUpdate();
+        } catch(SQLException ex) {
+            System.out.printf("ERROR: %s\n", ex);
+        }
+        return numberOfRowsEffected;
     }
 
     @Override
     public int deleteById(long id) {
-        return 0;
+        int numberOfRowsEffected = 0;
+        try {
+            String query = "delete from users where id = ?";
+
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, Long.toString(id));
+
+            numberOfRowsEffected = stmt.executeUpdate();
+        } catch(SQLException ex) {
+            System.out.printf("ERROR: %s\n", ex);
+        }
+        return numberOfRowsEffected;
     }
 
 
 //    public static void main(String[] args) {
-//        //w: create
-//        User newUser = new User("momlovescats", "mm@mail.com", "mm");
-//        System.out.println(new MySQLUserDao().createUser(newUser));
-//
-//        //w: find by id
-////        System.out.println(new MySQLUserDao().getById(1));
-//        //w: get
+////        //w: create
+//////        User newUser = new User("momlovescats", "mm@mail.com", "mm");
+//////        System.out.println(new MySQLUserDao().createUser(newUser));
+//////
+//////        //w: find by id
+////////        System.out.println(new MySQLUserDao().getById(1));
+//        //w: updte
+//        User updatedUser = new User(1,"amberlovescats14", "amber@mail.com", "amj");
+//        new MySQLUserDao().updateUserById(updatedUser);
+//////        //w: get
 //
 //        ArrayList<User> users = new MySQLUserDao().getAll();
 //        for (User user : users) {

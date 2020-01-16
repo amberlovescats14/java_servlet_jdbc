@@ -17,12 +17,27 @@
 
 </head>
 <body>
+<c:import url="../partials/nav.jsp"/>
 <h1>All users</h1>
 <c:forEach var="item" items="${allUsers}">
     <div class="card">
+        <div class="card-content">
+            <div class="card-title">
         ${item.username}
-        ${item.email}
-        ${item.password}
+            </div>
+        Email: ${item.email}
+        Password: ${item.password}
+            <div class="card-action">
+        <c:if test="${not empty sessionScope.loggedIn}">
+            <c:if test="${sessionScope.loggedIn}">
+                <c:if test="${item.id eq sessionScope.user.id}">
+                    <a class="waves-effect waves-light btn-small"
+                    href="/profile">View Profile</a>
+                </c:if>
+            </c:if>
+        </c:if>
+            </div>
+        </div>
     </div>
 </c:forEach>
 

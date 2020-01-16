@@ -8,8 +8,10 @@ drop user 'amber'@'localhost';
 show databases ;
 create database contacts;
 
+
 use contacts;
 show tables;
+drop table users;
 create table if not exists users(
     id int unsigned unique auto_increment,
     username varchar(50) not null,
@@ -25,6 +27,7 @@ create table if not exists ads (
         description varchar(200) not null ,
         primary key (id),
         foreign key (user_id) references users(id)
+                               on delete cascade
 );
 
 insert into users(username, email, password) values
@@ -39,6 +42,7 @@ insert into ads (user_id, title, description) VALUES
 (3, 'Nanny needed', 'Must be cool');
 
 select * from users;
+;
 select * from ads;
 
 select * from ads where id = 2;
