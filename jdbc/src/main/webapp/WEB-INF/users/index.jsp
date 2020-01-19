@@ -17,6 +17,9 @@
 
 </head>
 <body>
+
+
+
 <c:import url="../partials/nav.jsp"/>
 <h1>All users</h1>
 <c:forEach var="item" items="${allUsers}">

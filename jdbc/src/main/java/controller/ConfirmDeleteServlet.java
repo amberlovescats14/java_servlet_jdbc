@@ -1,4 +1,4 @@
-package controller.ads;
+package controller;
 
 import dao.users.MySQLUserDao;
 import models.User;
