@@ -26,7 +26,7 @@
             <div class="card-action">
                 <c:if test="${not empty sessionScope.loggedIn}">
                     <c:if test="${sessionScope.loggedIn}">
-                        <c:if test="${item.id eq sessionScope.user.id}">
+                        <c:if test="${item.userId eq sessionScope.user.id}">
                             <a class="waves-effect waves-light btn-small"
                                href="/edit-ad">Edit Ad</a>
                         </c:if>

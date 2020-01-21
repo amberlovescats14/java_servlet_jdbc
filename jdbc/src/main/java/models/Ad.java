@@ -7,33 +7,22 @@ public class Ad implements Serializable {
     private Long userId;
     private String title;
     private String description;
-
+    private String category;
 
     public Ad() {
     }
 
-    public Ad(String title, String description) {
-        this.title = title;
-        this.description = description;
-    }
-
-//    public Ad(Long id, String title, String description) {
-//        this.id = id;
-//        this.title = title;
-//        this.description = description;
-//    }
-
-    public Ad(Long userId, String title, String description) {
+    public Ad(Long userId, String title, String description, String category) {
         this.userId = userId;
         this.title = title;
         this.description = description;
+        this.category = category;
     }
 
-    public Ad(Long id, Long userId, String title, String description) {
-        this.id = id;
-        this.userId = userId;
+    public Ad(String title, String description, String category) {
         this.title = title;
         this.description = description;
+        this.category = category;
     }
 
     public Long getId() {
@@ -68,6 +57,14 @@ public class Ad implements Serializable {
         this.description = description;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     @Override
     public String toString() {
         return "Ad{" +
@@ -75,6 +72,7 @@ public class Ad implements Serializable {
                 ", userId=" + userId +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
+                ", category='" + category + '\'' +
                 '}';
     }
 }
